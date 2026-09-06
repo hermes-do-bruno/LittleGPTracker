@@ -28,7 +28,8 @@ static FourCC _all[]= {
 	I_CMD_STOP,
 	I_CMD_TABL,
 	I_CMD_TMPO,
-	I_CMD_VOLM
+	I_CMD_VOLM,
+	I_CMD_VOWL
 } ;
 
 int CommandList::GetCount() { return sizeof(_all) / sizeof(FourCC); }
