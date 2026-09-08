@@ -942,13 +942,10 @@ bool SampleInstrument::Render(int channel,fixed *buffer,int size,bool updateTick
 						fltHeightPtr++ ;
 						fltSpeedPtr++ ;
 					}
-					// apply vowel eq before attenuation
-					if (rp->vowelEnabled_) {
+				if (rp->vowelEnabled_) {
 						s2 = fl2fp(rp->vowelFilter_.Process(fp2fl(s2))) ;
 					}
-					// apply attenuation
-						s2=fp_mul(s2,fpattenuate) ;
-				}
+					s2=fp_mul(s2,fpattenuate) ;
 
 				if (channelCount==1) {
 					t2=s2 ;
@@ -996,6 +993,7 @@ bool SampleInstrument::Render(int channel,fixed *buffer,int size,bool updateTick
 		rp->feedbackIn_=(feedbackIn-feedbackStart)/2 ;
 		rp->feedbackOut_=(feedbackPick-feedbackStart)/2 ;
 		somethingToMix=true ;
+    }
     }
 
     return somethingToMix ; 
