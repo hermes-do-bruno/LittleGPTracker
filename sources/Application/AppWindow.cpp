@@ -81,6 +81,7 @@ AppWindow::AppWindow(I_GUIWindowImp &imp) : GUIWindow(imp) {
     _phraseView = 0;
     _projectView = 0;
     _instrumentView = 0;
+    _equalizerView = 0;
     _tableView = 0;
     _nullView = 0;
     _mixerView = 0;
@@ -380,6 +381,9 @@ void AppWindow::LoadProject(const Path &p) {
     _instrumentView = new InstrumentView((*this), _viewData);
     _instrumentView->AddObserver((*this));
 
+    _equalizerView = new EqualizerView((*this), _viewData);
+    _equalizerView->AddObserver((*this));
+
     _tableView = new TableView((*this), _viewData);
     _tableView->AddObserver((*this));
 
@@ -436,6 +440,7 @@ void AppWindow::CloseProject() {
     SAFE_DELETE(_phraseView);
     SAFE_DELETE(_projectView);
     SAFE_DELETE(_instrumentView);
+    SAFE_DELETE(_equalizerView);
     SAFE_DELETE(_tableView);
 
     UIController *controller = UIController::GetInstance();
@@ -577,10 +582,10 @@ void AppWindow::Update(Observable &o, I_ObservableData *d) {
         case VT_INSTRUMENT:
             _currentView = _instrumentView;
             break;
-        case VT_TABLE:
-            _currentView = _tableView;
+        case VT_EQUALIZER:
+            _currentView = _equalizerView;
             break;
-        case VT_TABLE2:
+        case VT_TABLE:
             _currentView = _tableView;
             break;
         case VT_GROOVE:
