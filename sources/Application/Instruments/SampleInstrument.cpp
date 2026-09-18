@@ -1141,8 +1141,6 @@ void SampleInstrument::ProcessCommand(int channel,FourCC cc,ushort value) {
 			for (int i=0; i<SONG_CHANNEL_COUNT; ++i) {
 				applyEqBandToVoice(renderParams_+i,band) ;
 			}
-			SetChanged() ;
-			NotifyObservers() ;
 			return ;
 		}
 		if (cmd[2]=='G') {
@@ -1150,8 +1148,6 @@ void SampleInstrument::ProcessCommand(int channel,FourCC cc,ushort value) {
 			for (int i=0; i<SONG_CHANNEL_COUNT; ++i) {
 				applyEqBandToVoice(renderParams_+i,band) ;
 			}
-			SetChanged() ;
-			NotifyObservers() ;
 			return ;
 		}
 	}
